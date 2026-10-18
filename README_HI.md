@@ -1,25 +1,19 @@
-# Missyco AI — Online AI starter (Vivo Y35 / Android 14)
+# Missyco AI — Phone Build Pack
 
-## इस ZIP में क्या है
-- Purple-black Android chat UI
-- Internet permission
-- OpenAI-compatible Chat Completions API का basic sample
-- GitHub Actions cloud build workflow, ताकि phone से source upload करके APK artifact बनवा सकें
+यह Android project आपके Vivo Y35 / Android 14 के लिए एक शुरुआती purple-black online AI chat app है।
 
-## जरूरी सीमाएँ
-- यह ZIP source project है, **APK नहीं**। इस environment में Android SDK/Gradle उपलब्ध नहीं था, इसलिए APK compile/test नहीं हुई।
-- API URL/key/model अभी sample values हैं। `MainActivity.java` में `API_URL`, `API_KEY`, `MODEL` देखें।
-- API key को APK में रखना असुरक्षित है। केवल निजी local testing के लिए भी सावधानी रखें; public app के लिए backend proxy बनाएं।
-- Provider का API format/model अलग हो सकता है; compatible endpoint जरूरी है।
-- Voice input, text-to-speech, persistent chat storage और production backend इस starter में अभी शामिल नहीं हैं।
+## जरूरी सच
+- यह **source project** है, APK नहीं।
+- इस environment में Android SDK/Gradle build नहीं चला, इसलिए APK बनने की पुष्टि नहीं है।
+- Online AI के लिए OpenAI-compatible API endpoint और API key चाहिए। API key को APK में hardcode करना सुरक्षित नहीं है; बेहतर production setup में अपनी backend proxy इस्तेमाल करें।
+- नीचे demo endpoint/key fields हैं। इन्हें अपने provider के वास्तविक values से बदलना होगा।
 
-## Phone-only cloud build (GitHub)
+## फोन से build
 1. ZIP extract करें।
-2. GitHub पर नया repository बनाएं और extracted files/folders upload करें (folder structure जस का तस रखें)।
-3. Repository में Actions tab खोलें। `Build Missyco AI APK` workflow चुनें और `Run workflow` दबाएं; या `main` branch में push/upload करने पर workflow अपने-आप चलेगा।
-4. Workflow सफल होने पर run के नीचे `Artifacts` में `MissycoAI-debug-apk` डाउनलोड करें।
-5. ZIP को extract करके `app-debug.apk` फोन पर खोलें और Android की install prompt follow करें।
+2. AndroidIDE जैसे Android Gradle IDE में project folder import/open करें।
+3. AndroidIDE में SDK/Gradle setup और project sync करें।
+4. `app/src/main/java/com/missyco/ai/MainActivity.java` में `API_URL` और `API_KEY` को अपने provider के values से बदलें (केवल निजी testing के लिए; सार्वजनिक app में key hardcode न करें)।
+5. Build > Assemble/Build APK चलाएँ।
+6. सफल होने पर `app/build/outputs/apk/debug/app-debug.apk` खोजें और install करें।
 
-## Build errors
-- अगर workflow fail हो, Actions run का error screenshot/text भेजें।
-- APK install होने का अर्थ online AI ready होना नहीं है; API endpoint/model/key configure करने होंगे।
+यदि AndroidIDE में Gradle/SDK error आता है, उसका screenshot भेजें। फोन पर build की सफलता AndroidIDE और compatible Gradle/SDK setup पर निर्भर है।
